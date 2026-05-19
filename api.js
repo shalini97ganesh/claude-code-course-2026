@@ -1,27 +1,31 @@
 const fs = require("node:fs");
 const path = require("node:path");
+//sends messages to anthropic Claude using @anthropic-ai/sdk
 const Anthropic = require("@anthropic-ai/sdk");
 const { toolDefinitions, handleToolCall } = require("./tools");
 
 const MODEL = "claude-sonnet-4-6";
-
+//loops upto a maximum of 10 times
 const MAX_ITERATIONS = 10;
 
+//uses the API key from the environment variable 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+//loads the system prompt with instructions to run for Claude
 function loadSystemPrompt() {
   const base =
     "You are devlens, an AI assistant embedded in the user's project directory. " +
     "You have tools for reading files, writing files, running shell commands, " +
     "and listing directories. When the user asks a question that depends on the " +
     "contents of the codebase, use the tools — do not guess.";
-
+// if there is a CLAUDE.md file sync its contents onto the project
   const claudeMdPath = path.resolve(process.cwd(), "CLAUDE.md");
   if (!fs.existsSync(claudeMdPath)) return base;
 
   const claudeMd = fs.readFileSync(claudeMdPath, "utf-8");
   return `${base}\n\n--- Project context (from CLAUDE.md) ---\n${claudeMd}`;
 }
+//It handles chat logic, sends the input and recieves response from Claude model
 async function chat(userMessage, history) {
 
   const messages = [...history, { role: "user", content: userMessage }];
