@@ -111,6 +111,11 @@ This week is about understanding the tool use cycle — how Claude asks your cod
 ### What to submit
 Push one commit to your fork:
 
+**An existing skill that could help you and why**
+- write a short reflection on why
+- create 'relfections' folder in devlens
+- add reflection to fork as .txt or .md
+  
 **A custom skill for devlens**
 - Create `.claude/skills/[your-skill-name]/SKILL.md`
 - Pick one of these options (or create your own):
