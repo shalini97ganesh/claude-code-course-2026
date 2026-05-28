@@ -150,21 +150,21 @@ This week is about understanding how Claude makes decisions — and what to do w
 ### What to submit
 Push one commit to your fork:
 
-**A failure trace**
-- Create a `traces` folder in your repo
-- Add `traces/week-3.md`
-- In that file, document one time Claude got something wrong while you were working with devlens this session:
-  1. **What you sent** — the prompt or task
-  2. **What Claude did** — what went wrong
-  3. **Why it happened** — which failure mode (missing context, conflicting signals, too much noise, or wrong tool trigger)
-  4. **What you changed** — how you fixed it
-
+**A before and after prompt trace**
+- Find a prompt from your own chat history in any AI tool — something that didn't quite get you what you wanted
+- Rewrite it applying what you learned today: add missing context, remove conflicting signals, be more specific
+- Test **both versions** in devlens and screenshot or paste the two responses
+- Create a `traces` folder in your repo and add `traces/week-3.md`
+- In that file include:
+  1. **Your original prompt** and Claude's response
+  2. **Your rewritten prompt** and Claude's response
+  3. **One sentence** explaining what you changed and why it worked
 - Commit: `git commit -m "feat: add week-3 trace"`
 
 ### What makes a good trace
-The trace doesn't need to be long — a short paragraph per section is enough. What matters is that your diagnosis is specific. "Claude didn't understand" is not a diagnosis. "Claude predicted a generic Express app structure because CLAUDE.md wasn't loaded, so it had no signal about how devlens is structured" is a diagnosis.
+The one sentence explanation is the whole assignment. "I added more context" is not enough. "I removed the instruction to be brief because it was conflicting with my request for a detailed explanation, so Claude stopped averaging the two" is enough.
 
-> **Why document failures?** Because the ability to read a bad response and understand *why* it happened is more valuable than never seeing a bad response. Anyone can re-prompt until something works. Understanding the mechanism is what makes you someone who can build with AI, not just use it.
+> **Why use a real prompt from your own history?** Because the goal isn't to pass an exercise — it's to change how you prompt everything, forever. A prompt you actually sent and actually got wrong is more useful than a contrived example. The difference in Claude's responses, tested live in devlens, is the proof.
 
 ---
 
