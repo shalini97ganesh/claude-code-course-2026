@@ -112,10 +112,10 @@ This week is about understanding the tool use cycle — how Claude asks your cod
 Push one commit to your fork:
 
 **An existing skill that could help you and why**
-- write a short reflection on why
-- create 'relfections' folder in devlens
-- add reflection to fork as .txt or .md
-  
+- Write a short reflection on why
+- Create a `reflections` folder in devlens
+- Add reflection to fork as `.txt` or `.md`
+
 **A custom skill for devlens**
 - Create `.claude/skills/[your-skill-name]/SKILL.md`
 - Pick one of these options (or create your own):
@@ -143,6 +143,31 @@ Your skill should have:
 
 ---
 
+## Week 3 assignment
+
+This week is about understanding how Claude makes decisions — and what to do when it makes the wrong one.
+
+### What to submit
+Push one commit to your fork:
+
+**A failure trace**
+- Create a `traces` folder in your repo
+- Add `traces/week-3.md`
+- In that file, document one time Claude got something wrong while you were working with devlens this session:
+  1. **What you sent** — the prompt or task
+  2. **What Claude did** — what went wrong
+  3. **Why it happened** — which failure mode (missing context, conflicting signals, too much noise, or wrong tool trigger)
+  4. **What you changed** — how you fixed it
+
+- Commit: `git commit -m "feat: add week-3 trace"`
+
+### What makes a good trace
+The trace doesn't need to be long — a short paragraph per section is enough. What matters is that your diagnosis is specific. "Claude didn't understand" is not a diagnosis. "Claude predicted a generic Express app structure because CLAUDE.md wasn't loaded, so it had no signal about how devlens is structured" is a diagnosis.
+
+> **Why document failures?** Because the ability to read a bad response and understand *why* it happened is more valuable than never seeing a bad response. Anyone can re-prompt until something works. Understanding the mechanism is what makes you someone who can build with AI, not just use it.
+
+---
+
 ## Project structure
 
 ```
@@ -156,6 +181,8 @@ devlens/
 ├── CLAUDE.md     # Your personal context file — fill this in!
 ├── .claude/
 │   └── skills/   # Your custom skills live here
+├── reflections/  # Your week 2 skill reflection
+├── traces/       # Your week 3 failure trace
 └── .env          # Your API key (never commit this)
 ```
 
