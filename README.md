@@ -104,6 +104,70 @@ The diff between your two commits *is* the assignment — it shows what personal
 
 ---
 
+## Week 2 assignment
+
+This week is about understanding the tool use cycle — how Claude asks your code to do things, and how your code decides whether to honor those requests.
+
+### What to submit
+Push one commit to your fork:
+
+**An existing skill that could help you and why**
+- Write a short reflection on why
+- Create a `reflections` folder in devlens
+- Add reflection to fork as `.txt` or `.md`
+
+**A custom skill for devlens**
+- Create `.claude/skills/[your-skill-name]/SKILL.md`
+- Pick one of these options (or create your own):
+  - `/trace` — trace a tool call (read_file, write_file, etc.) end-to-end through the codebase
+  - `/diagram` — explain the request/response flow for a specific scenario
+  - `/compare` — compare how devlens implements something vs how Claude Code does it
+  - `/explain-gap` — document what you learned by fixing this week's gap
+- Test your skill in Claude Code to make sure it works
+- Commit: `git commit -m "feat: add [skill-name] skill"`
+
+### Standards for a good skill
+Your skill should have:
+1. **Specific description** — Clear enough that Claude knows when to use it
+2. **Clear instructions** — Numbered steps, specific output format
+3. **Examples in the instructions** — Show Claude what good output looks like
+4. **Arguments where needed** — Use `$ARGUMENTS` or `$0, $1, $2` for input
+
+### Tips for writing your skill
+- Read through `tools.js` and `api.js` first to understand what you're explaining
+- Use actual line numbers and file names in your skill instructions
+- Test it multiple times — if Claude's output isn't what you wanted, refine the instructions
+- Make it devlens-specific — it should require understanding this codebase to write it
+
+> **Why devlens-specific?** Generic skills like `/review` can be written without reading any code. Skills like `/trace` or `/diagram` force you to understand how devlens works under the hood. The skill is evidence you understand the tool use cycle.
+
+---
+
+## Week 3 assignment
+
+This week is about understanding how Claude makes decisions — and what to do when it makes the wrong one.
+
+### What to submit
+Push one commit to your fork:
+
+**A before and after prompt trace**
+- Find a prompt from your own chat history in any AI tool — something that didn't quite get you what you wanted
+- Rewrite it applying what you learned today: add missing context, remove conflicting signals, be more specific
+- Test **both versions** in devlens and screenshot or paste the two responses
+- Create a `traces` folder in your repo and add `traces/week-3.md`
+- In that file include:
+  1. **Your original prompt** and Claude's response
+  2. **Your rewritten prompt** and Claude's response
+  3. **One sentence** explaining what you changed and why it worked
+- Commit: `git commit -m "feat: add week-3 trace"`
+
+### What makes a good trace
+The one sentence explanation is the whole assignment. "I added more context" is not enough. "I removed the instruction to be brief because it was conflicting with my request for a detailed explanation, so Claude stopped averaging the two" is enough.
+
+> **Why use a real prompt from your own history?** Because the goal isn't to pass an exercise — it's to change how you prompt everything, forever. A prompt you actually sent and actually got wrong is more useful than a contrived example. The difference in Claude's responses, tested live in devlens, is the proof.
+
+---
+
 ## Project structure
 
 ```
@@ -115,6 +179,10 @@ devlens/
 │   ├── index.html  # The chat UI
 │   └── style.css   # Styles
 ├── CLAUDE.md     # Your personal context file — fill this in!
+├── .claude/
+│   └── skills/   # Your custom skills live here
+├── reflections/  # Your week 2 skill reflection
+├── traces/       # Your week 3 failure trace
 └── .env          # Your API key (never commit this)
 ```
 
